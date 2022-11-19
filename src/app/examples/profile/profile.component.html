@@ -1,0 +1,141 @@
+<div class="wrapper" *ngIf="!loading">
+  <div class="page-header page-header-small" filter-color="orange">
+    <div
+      class="page-header-image rellax-header"
+      data-rellax-speed="-8"
+      style="background-image: url('assets/img/salah.jpeg')"
+    ></div>
+    <div class="container">
+      <div class="content-center">
+        <div class="photo-container">
+          <img [src]="user.avatar" alt="" />
+        </div>
+        <h3 class="title">{{ user.userName }}</h3>
+        <p class="category" *ngIf="user.speciality">{{ user.speciality }}</p>
+
+        <div class="content">
+          <div class="social-description">
+            <h2>{{ user?.posts?.length }}</h2>
+            <p>Vidéos</p>
+          </div>
+          <div class="social-description">
+            <h2>{{ user?.images?.length }}</h2>
+            <p>Photos</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="container">
+      <div
+        class="button-container"
+        *ngIf="user?._id === connectedUser?._id && connectedUser"
+      >
+        <a (click)="editporifle()" class="btn btn-primary btn-round btn-lg"
+          >Modifier Votre Profil</a
+        >
+      </div>
+      <h3 class="title">À Propos De Moi </h3>
+      <!-- <div class="form-group">
+        <textarea class="form-control" id="description" rows="3">
+ Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nobis voluptatibus perferendis fuga magni omnis culpa, maiores modi ipsa eos harum, esse voluptas inventore ea assumenda reprehenderit incidunt sapiente iusto repudiandae!</textarea
+        >
+      </div> -->
+      <div class="row" style="margin: 10px 0px">
+        <div class="col-md-12" style="display: flex; justify-content: center">
+          <span>
+            {{ user?.desc }}
+          </span>
+        </div>
+      </div>
+
+      <div
+        style="justify-content: center; align-items: center; display: flex"
+        *ngIf="user?._id === connectedUser?._id && connectedUser && !visit()"
+      >
+        <button class="btn btn-primary" (click)="addPhotos(user)">
+          Ajouter des photos
+        </button>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <h4 class="title text-center"><br></h4>
+          <ngb-tabset
+            style="display: flex; flex-direction: column"
+            [justify]="'center'"
+            type="pills"
+            class="
+              nav nav-pills nav-pills-primary nav-pills-just-icons
+              justify-content-center
+              tab-space
+            "
+          >
+            <ngb-tab>
+              <ng-template ngbTabTitle>
+                <i class="now-ui-icons media-1_button-play"></i>
+              </ng-template>
+              <ng-template ngbTabContent>
+                <div class="row">
+                  <div class="col-md-10 ml-auto mr-auto">
+                    <div class="row collections">
+                      <div class="col-md-6" *ngFor="let x of user.posts">
+                        <div class="card" style="display: flex">
+                          <div
+                            style="display: flex; justify-content: space-around"
+                          >
+                            <img
+                              style="cursor: pointer; margin-top: 20px"
+                              src="../../../../assets//img/iconmonstr-x-mark-4.svg"
+                              width="30px"
+                              alt=""
+                            />
+                          </div>
+
+                          <div style="display: flex; justify-content: space-around;">
+                            <video
+                              style="
+                                max-height: 400px;
+                                max-width: 400px;
+                                margin: 5px 0px 20px 0px;
+                              "
+                              controls
+                            >
+                              <source
+                                src="http://localhost:8081//{{ x.video }}"
+                              />
+                            </video>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+            </ngb-tab>
+            <ngb-tab>
+              <ng-template ngbTabTitle>
+                <i class="now-ui-icons design_image"></i>
+              </ng-template>
+              <ng-template ngbTabContent>
+                <div class="row">
+                  <div class="col-md-10 ml-auto mr-auto">
+                    <div class="row collections">
+                      <div class="col-md-6" *ngFor="let x of user.images">
+                        <img
+                          src="http://localhost:8081//{{ x }}"
+                          alt=""
+                          class="img-raised"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+            </ngb-tab>
+          </ngb-tabset>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

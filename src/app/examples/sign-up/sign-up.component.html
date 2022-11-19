@@ -1,0 +1,262 @@
+<div class="page-header">
+  <div
+    class="page-header-image"
+    style="background-image: url(assets/img/seif.jpg)"
+  ></div>
+
+  <div class="container">
+    <div class="content-center">
+      <div class="login-wrap">
+        <div class="login-html" style="border-radius: 10px">
+          <input
+            id="tab-1"
+            type="radio"
+            name="tab"
+            class="sign-in"
+            checked
+            (click)="selectRole(1)"
+          /><label for="tab-1" class="tab">Viseur</label>
+          <input
+            id="tab-2"
+            type="radio"
+            name="tab"
+            class="sign-up"
+            (click)="selectRole(2)"
+          />
+          <label for="tab-2" class="tab">Talent </label>
+          <div class="login-form">
+            <form
+              #signUpForm="ngForm"
+              style="margin: 0px 40px"
+              (ngSubmit)="signUpForm.valid && onSubmit(signUpForm)"
+            >
+              <div class="sign-in-htm">
+                <div class="group">
+                  <label for="user" class="label">nom d'utilisateur</label>
+                  <input
+                    type="text"
+                    class="input"
+                    [(ngModel)]="userService.selectedUser.userName"
+                    #userName="ngModel"
+                    name="userName"
+                    required
+                    [ngClass]="{
+                      'invalid-textbox': signUpForm.submitted && !userName.valid
+                    }"
+                  />
+                  <div *ngIf="signUpForm.submitted && !userName.valid">
+                    <label class="validation-message"
+                      >This field is required.</label
+                    >
+                  </div>
+                </div>
+
+                <div class="group">
+                  <label for="email" class="label">Adresse E-mail</label>
+                  <input
+                    type="email"
+                    class="input"
+                    [(ngModel)]="userService.selectedUser.email"
+                    #email="ngModel"
+                    name="email"
+                    required
+                    [pattern]="emailRegex"
+                    [ngClass]="{
+                      'invalid-textbox': signUpForm.submitted && !email.valid
+                    }"
+                  />
+                  <div *ngIf="signUpForm.submitted && email.errors">
+                    <label
+                      *ngIf="email.errors.required"
+                      class="validation-message"
+                      >This field is required.</label
+                    >
+                    <label
+                      *ngIf="email.errors.pattern"
+                      class="validation-message"
+                      >Invalid email address.</label
+                    >
+                  </div>
+                </div>
+
+                <div class="group">
+                  <label for="pass" class="label">Mot de passe</label>
+                  <input
+                    type="password"
+                    class="input"
+                    [(ngModel)]="userService.selectedUser.password"
+                    #password="ngModel"
+                    name="password"
+                    minlength="4"
+                    required
+                    [ngClass]="{
+                      'invalid-textbox': signUpForm.submitted && !password.valid
+                    }"
+                  />
+                  <div *ngIf="signUpForm.submitted && password.errors">
+                    <label
+                      *ngIf="password.errors.required"
+                      class="validation-message"
+                      >This field is required.</label
+                    >
+                    <label
+                      *ngIf="password.errors.minlength"
+                      class="validation-message"
+                      >Enter atleast 4 characters.</label
+                    >
+                  </div>
+                </div>
+
+                <div class="group" style="margin-top: 20px">
+                  <input type="submit" class="button" value="Créer Compte" />
+                </div>
+                <div class="hr"></div>
+              </div>
+              <div class="sign-up-htm">
+                <div class="group">
+                  <label for="user1" class="label">Nom d'utilisateur</label>
+                  <input
+                    type="text"
+                    class="input"
+                    [(ngModel)]="userService.selectedUser.userName"
+                    #userName="ngModel"
+                    name="userName"
+                    required
+                    [ngClass]="{
+                      'invalid-textbox': signUpForm.submitted && !userName.valid
+                    }"
+                  />
+                </div>
+
+                <div class="group">
+                  <label for="email1" class="label">Adresse E-mail</label>
+                  <input
+                    type="text"
+                    class="input"
+                    [(ngModel)]="userService.selectedUser.email"
+                    #email="ngModel"
+                    name="email"
+                    required
+                    [pattern]="emailRegex"
+                    [ngClass]="{
+                      'invalid-textbox': signUpForm.submitted && !email.valid
+                    }"
+                  />
+                  <div *ngIf="signUpForm.submitted && email.errors">
+                    <label
+                      *ngIf="email.errors.required"
+                      class="validation-message"
+                      >This field is required.</label
+                    >
+                    <label
+                      *ngIf="email.errors.pattern"
+                      class="validation-message"
+                      >Invalid email address.</label
+                    >
+                  </div>
+                </div>
+
+                <div class="group">
+                  <label for="pass1" class="label">Mot de passe</label>
+                  <input
+                    type="password"
+                    class="input"
+                    [(ngModel)]="userService.selectedUser.password"
+                    #password="ngModel"
+                    name="password"
+                    minlength="4"
+                    required
+                    [ngClass]="{
+                      'invalid-textbox': signUpForm.submitted && !password.valid
+                    }"
+                  />
+                  <div *ngIf="signUpForm.submitted && password.errors">
+                    <label
+                      *ngIf="password.errors.required"
+                      class="validation-message"
+                      >This field is required.</label
+                    >
+                    <label
+                      *ngIf="password.errors.minlength"
+                      class="validation-message"
+                      >Enter atleast 4 characters.</label
+                    >
+                  </div>
+                </div>
+                <p>Sélectionner votre catégorie:</p>
+                <div class="group">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <input
+                        type="radio"
+                        id="sport"
+                        name="category"
+                        value="sport"
+                        (change)="radioChange($event)"
+                        checked
+                        ngModel
+                      />
+                      <label for="sport">Sport</label><br />
+                    </div>
+                    <div class="col-md-6">
+                      <input
+                        type="radio"
+                        id="art"
+                        name="category"
+                        value="art"
+                        (change)="radioChange($event)"
+                        ngModel
+                      />
+                      <label for="art">Art</label><br />
+                    </div>
+                  </div>
+                </div>
+                <div class="group" *ngIf="value == 'sport'">
+                  <label for="cars" class="label" class="label"
+                    >Choisir votre spécialité:</label
+                  >
+                  <select name="speciality" ngModel id="cars" class="input" (change)="show($event)">
+                    <option selected disabled value>choisr un sport</option>
+                    <option
+                      [ngValue]="k.sport"
+                      *ngFor="let k of sport"
+                      class="option"
+                    >
+                      {{ k.sport }}
+                    </option>
+                  </select>
+                </div>
+                <div class="group" *ngIf="value == 'art'">
+                  <label for="cars" class="label" class="label"
+                    >Choisir votre spécialité:</label
+                  >
+                  <select name="speciality" id="cars" class="input" ngModel>
+                    <option selected disabled value>choisir un art</option>
+                    <option
+                      [ngValue]="k.art"
+                      *ngFor="let k of art"
+                      class="option"
+                    >
+                      {{ k.art }}
+                    </option>
+                  </select>
+                </div>
+
+                <div class="group">
+                  <input type="submit" class="button" value="Créer Compte" />
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Success message -->
+  <div class="success" *ngIf="showSucessMessage">Saved successfully</div>
+
+  <!-- Error message -->
+  <div class="alert" *ngIf="serverErrorMessages">
+    {{ serverErrorMessages }}
+  </div>
+</div>

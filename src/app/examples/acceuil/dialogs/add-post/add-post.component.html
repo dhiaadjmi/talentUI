@@ -1,0 +1,61 @@
+<div class="md-dialog-container">
+  <div
+    style="
+      justify-content: space-between;
+      align-items: center;
+      display: flex;
+      margin-bottom: 10px;
+    "
+  >
+    <div></div>
+    <button class="button-close" mat-button [mat-dialog-close]="true">X</button>
+  </div>
+  <h2 style="text-align: center">Ajouter Un poste</h2>
+  <form #addPost="ngForm" (ngSubmit)="onSubmit(addPost.value)">
+    <div class="form-group">
+      <div style="display: flex; align-items: center; justify-content: center">
+        <video
+          class="image"
+          *ngFor="let url of selectedFiles"
+          height="150"
+          width="200px"
+          style="margin: 3px"
+          (click)="remove(url)"
+        >
+          <source src="http://localhost:8081//{{ url }}" />
+        </video>
+        <label for="file">
+          <img
+            *ngIf="selectedFiles.length < 1"
+            src="../../assets/img/plusIcon.webp"
+            style="cursor: pointer"
+            class="bro"
+          />
+        </label>
+        <input
+          #file
+          id="file"
+          type="file"
+          accept="video/mp4,video/x-m4v,video/*"
+          style="display: none"
+          (change)="selectFiles($event)"
+        />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description :</label>
+      <textarea
+        class="form-control"
+        id="description"
+        rows="3"
+        name="desc"
+        ngModel
+      ></textarea>
+    </div>
+
+    <div style="display: flex; align-items: center; justify-content: center">
+      <button type="submit" class="btn btn-info">Ajouter</button>
+    </div>
+  </form>
+</div>

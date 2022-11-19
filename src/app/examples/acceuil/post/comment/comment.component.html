@@ -1,0 +1,28 @@
+<div class="userCommentRow">
+    <div class="commentHeader">
+      <div class="UserDetail">
+        <img
+          class="UserAvatar"
+          [src]="comment.user.avatar"
+          alt=""
+        />
+        <span class="UserName">{{comment.user.userName}}</span>
+      </div>
+      <div style="float: right"> {{comment.createdAt}} </div>
+    </div>
+    <div class="commentBody">
+      <div class="col-md-12">
+        <ng-container *ngFor="let star of stars">
+          <app-stars
+            [starId]="star"
+            [disabled]="false"
+            [rating]="hoverState || rating"
+          >
+          </app-stars>
+        </ng-container>
+      </div>
+      <span class="commentText">
+        {{comment.text}}
+      </span>
+    </div>
+  </div>

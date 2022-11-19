@@ -1,0 +1,14 @@
+.md-dialog-container {
+  width: 600px;
+  height: auto;
+}
+
+.button-close {
+  float: right;
+  font-size: 20px;
+  border: none;
+  height: 30px;
+  background-color: #ffffff;
+  outline: none;
+  color: #c04747;
+}

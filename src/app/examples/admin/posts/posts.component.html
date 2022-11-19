@@ -1,0 +1,57 @@
+<div class="main-content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+         <br>
+         <br>
+         <br>
+        
+          <h1>Les Publications</h1>
+          <br>
+         <br>
+          <div class="card">
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-hover">
+                  <thead class="text-primary">
+                    <th>Réferances</th>
+                    <th>Nom des Utilisateurs</th>
+                    <th> Total d'évaluations </th>
+                    <th>Type </th>
+                    <th>Signalée</th>
+                    <th>Action</th>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let post of listposts">
+                      <td>
+                        {{ post._id }}
+                      </td>
+                      <td>
+                        {{ post.user.userName }}
+                      </td>
+                      <td>
+                        {{ post.comments.length }}
+                      </td>
+                      <td>
+                        {{ post.user.talent.category }}
+                      </td>
+                      <td><span *ngIf="post.reported === 1" class="dot"></span> <span *ngIf="post.reported === 0" class="safe"></span></td>
+                      <td>
+                        <button
+                          class="btn btn-danger"
+                          (click)="deletePost(post._id)"
+                        >
+                          Supprimer
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,55 @@
+<div class="page-header">
+  <div
+    class="page-header-image"
+    style="background-image: url(assets/img/seif.jpg)"
+  ></div>
+  
+  
+  <div class="container">
+
+    <div class="content-center">
+      <div class="login-wrap">
+        <div class="login-html" style="border-radius: 10px;">
+
+          <form #login="ngForm" (ngSubmit)="login.valid && onSubmit(login)">
+          <div class="login-form">
+            <div class="sign-in-htm">
+              <div class="group">
+                <label for="email" class="label">Adresse E-mail</label>
+                <input id="email" type="email" class="input" name="email" #email="ngModel" [(ngModel)]="User.email" placeholder="Email" [pattern]="emailRegex" required
+                [ngClass]="{'invalid-textbox' :login.submitted && !email.valid }">
+                <div *ngIf="login.submitted && email.errors?.pattern">
+                  <label class="validation-message">Invalid email address.</label>
+                </div>
+              </div>
+
+
+            
+              <div class="group">
+                <label for="pass" class="label">Password</label>
+                <input id="pass" type="password" class="input"  name="password" #password="ngModel" [(ngModel)]="User.password" placeholder="Password" required minlength="4"
+                [ngClass]="{'invalid-textbox' :login.submitted && !password.valid }">
+                <div *ngIf="login.submitted && password.errors?.minlength">
+                  <label class="validation-message">Minimum 4 characters.</label>
+                </div>
+              </div>
+              <div class="group">
+                <input type="submit" class="button" value="Sign In" />
+              </div>
+              <div class="hr"></div>
+              <div class="foot-lnk">
+                <a href="examples/sign-up">Create Account?</a>
+              </div>
+            </div>
+          </div>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- Error message -->
+<div class="alert" *ngIf="serverErrorMessages">
+  {{serverErrorMessages}}
+</div>
+</div>

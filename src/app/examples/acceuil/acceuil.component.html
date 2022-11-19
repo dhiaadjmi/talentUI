@@ -1,0 +1,17 @@
+<div *ngIf="!dataLoading">
+  <div class="posts-section">
+    <div class="card" *ngIf="role == 'talent'">
+      <button (click)="addpost(user)" class="btn btn-success">
+        Ajouter une publication
+      </button>
+    </div>
+    <div *ngIf="posts?.length > 0">
+      <app-post *ngFor="let item of posts" [item]="item"></app-post>
+    </div>
+    <div *ngIf="posts?.length === 0" style="margin: 100px 0px;">
+      <div>
+        <h3>Il n'y a pas de données </h3>
+      </div>
+    </div>
+  </div>
+</div>

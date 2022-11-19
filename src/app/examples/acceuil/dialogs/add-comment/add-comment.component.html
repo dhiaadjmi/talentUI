@@ -1,0 +1,47 @@
+<div class="md-dialog-container">
+  <div
+    style="
+      justify-content: space-between;
+      align-items: center;
+      display: flex;
+      margin-bottom: 10px;
+    "
+  >
+    <button class="button-close" mat-button (click)="MatDialogRef.close()">
+      X
+    </button>
+  </div>
+  <h2 style="text-align: center">Évaluer la publication </h2>
+  <form #addComment="ngForm" (ngSubmit)="onSubmit(addComment.value)">
+    <div class="row">
+      <div class="col-md-12">
+        
+        <input type="text"  style="margin: 10px;height: 40px;display: flex; justify-content:center; align-items:center; margin: 15px;" placeholder="Donner votre avis :" class="form-control" name="text" ngModel />
+      </div>
+
+      <!-- <div class="col-md-12">
+        <label for="">RATE STARS !!!!!!! :</label>
+        <input type="number" class="form-control" name="rate" ngModel required />
+      </div> -->
+<hr/>
+      <div class="col-md-12" style="display: flex; justify-content:center; align-items:center; margin: 15px;">
+        <ng-container *ngFor="let star of stars">
+          <app-stars
+            [starId]="star"
+            [rating]="hoverState || rating"
+            (enter)="enter($event)"
+            (leave)="leave($event)"
+            (bigClick)="updateRating(star)"
+            
+          >
+          </app-stars>
+          
+        </ng-container>
+      </div>
+
+      <div style="display: flex; align-items: center; justify-content: center">
+        <button type="submit" class="btn btn-info">Évaluer</button>
+      </div>
+    </div>
+  </form>
+</div>

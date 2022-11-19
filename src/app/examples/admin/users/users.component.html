@@ -1,0 +1,62 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <br>
+        <br>
+        <br>
+        
+        <h1>Les Utilisateurs</h1>
+        <br>
+        <br>
+        <div class="card">
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead class="text-primary">
+                  <th>Référances</th>
+                  <th>Nombre des Utilisateurs </th>
+                  <th>Nombre des Publications</th>
+                  <th>type de talent</th>
+                  <th>Action</th>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let currentUser of users">
+                    <td  *ngIf='currentUser.role != "admin"'>
+                      {{ currentUser._id }}
+                    </td>
+                    <td *ngIf='currentUser.role != "admin"'>
+                      {{ currentUser.userName }}
+                    </td>
+                    <td *ngIf='currentUser.role != "admin"'>
+                      {{ currentUser.posts.length }}
+                    </td>
+                    <td *ngIf='currentUser.role != "admin"'>
+                      {{ currentUser.talent.category }}
+                      <p *ngIf='!currentUser.talent.category'> viseur </p>
+                    </td>
+                    <td  *ngIf='currentUser.role != "admin"'>
+                      <span *ngIf="currentUser.reported === 1" class="dot"></span>
+                      <span *ngIf="currentUser.reported === 0" class="safe"></span>
+                    </td>
+                    <td  *ngIf='currentUser.role != "admin"'>
+                      <button *ngIf='currentUser.blocked === 0'
+                        class="btn btn-danger"
+                        (click)="block(currentUser._id)"
+                      >
+                        Bloquer
+                      </button>
+                      <button *ngIf='currentUser.blocked === 1' class="btn btn-primary" (click)="unblock(currentUser._id)">
+                        Débloquer
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

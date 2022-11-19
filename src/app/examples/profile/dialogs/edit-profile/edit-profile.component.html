@@ -1,0 +1,69 @@
+<div class="md-dialog-container">
+    <div
+      style="
+        justify-content: space-between;
+        align-items: center;
+        display: flex;
+        margin-bottom: 10px;
+      "
+    >
+      <div></div>
+      <button class="button-close" mat-button [mat-dialog-close]="true">X</button>
+    </div>
+    <h2 style="text-align: center">Modifier Votre Profil</h2>
+    <form #addUser="ngForm" (ngSubmit)="onSubmit(addUser.value)">
+      <div class="form-group">
+        <div style="display: flex; align-items: center; justify-content: center">
+            <img
+              *ngIf="selectedFile"
+              class="image"
+              src="{{ selectedFile }}"
+              height="150"
+              width="200px"
+              style="margin: 3px"
+              (click)="remove()"
+            />
+            <label for="file" *ngIf="!selectedFile">
+              <img
+                src="../../assets/img/plusIcon.webp"
+                style="cursor: pointer"
+                class="bro"
+              />
+            </label>
+            <input
+              id="file"
+              type="file"
+              accept="image/png,  image/jpeg"
+              style="display: none"
+              (change)="selectFiles($event)"
+            />
+          </div>
+        <label for="nom">Nom d'utilisateur</label>
+        <input
+          type="text"
+          class="form-control"
+          id="nom"
+          placeholder="Nom"
+          name="nom"
+          [(ngModel)]="user.userName"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description :</label>
+        <textarea
+          class="form-control"
+          id="description"
+          rows="3"
+          name="description"
+          [(ngModel)]="user.desc"
+        ></textarea>
+      </div>
+  
+  
+      <div style="display: flex; align-items: center; justify-content: center">
+        <button type="submit" class="btn btn-info">Enregistrer</button>
+      </div>
+    </form>
+  </div>
+  

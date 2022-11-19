@@ -1,0 +1,45 @@
+<div class="md-dialog-container">
+  <div
+    style="
+      justify-content: space-between;
+      align-items: center;
+      display: flex;
+      margin-bottom: 10px;
+    "
+  >
+    <div></div>
+    <button class="button-close" mat-button [mat-dialog-close]="true">X</button>
+  </div>
+  <h2 style="text-align: center">Sélectionner Votre Image</h2>
+  <form #addUser="ngForm" (ngSubmit)="onSubmit(addUser.value)">
+    <div class="form-group">
+      <div style="display: flex; align-items: center; justify-content: center">
+        <img
+          class="image"
+          *ngFor="let url of selectedFiles"
+          src="http://localhost:8081//{{ url }}"
+          height="150"
+          width="200px"
+          style="margin: 3px"
+          (click)="remove(url)"
+        />
+        <label for="file">
+          <img
+            src="../../assets/img/plusIcon.webp"
+            style="cursor: pointer"
+            class="bro"
+          />
+        </label>
+        <input
+          id="file"
+          type="file"
+          accept="image/png,  image/jpeg"
+          style="display: none"
+          (change)="selectFiles($event)"
+        />
+      </div>
+
+      <input class="btn btn-success" style="width: 100%;" type="submit">
+    </div>
+  </form>
+</div>
